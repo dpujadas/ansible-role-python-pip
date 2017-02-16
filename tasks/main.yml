@@ -1,0 +1,18 @@
+---
+# tasks file for python-pip
+
+- name: Download get-pip.py
+  get_url:
+    url: 'https://bootstrap.pypa.io/get-pip.py'
+    dest: '/tmp'
+    mode: 'a+x'
+  register: python_pip_download
+  tags:
+    - python-pip
+
+- name: Run get-pip.py
+  shell: >
+    python /tmp/get-pip.py
+  when: python_pip_download.changed
+  tags:
+    - python-pip
