@@ -12,7 +12,7 @@
 
 - name: Run get-pip.py
   shell: >
-    {{ ansible_python_interpreter }} /tmp/get-pip.py
+    {{ ansible_python_interpreter|d('python') }} /tmp/get-pip.py
   when: python_pip_download.changed
   tags:
     - python-pip
